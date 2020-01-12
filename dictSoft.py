@@ -10,6 +10,7 @@ import pandas as pd
 import time
 from random import randint
 from random import shuffle
+from googletrans import Translator
 
 def updateDict(rout):
     dictDf = pd.read_excel(rout)
