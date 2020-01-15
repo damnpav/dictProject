@@ -5,7 +5,7 @@ Created on Wed Jul  3 13:52:43 2019
 @author: hcani
 """
 
-path = "dict.xlsx" # path to your excel dict
+path = "dict.csv" # path to your excel dict
 import pandas as pd
 import time
 from random import randint
@@ -13,7 +13,7 @@ from random import shuffle
 from googletrans import Translator
 
 def updateDict(rout):
-    dictDf = pd.read_excel(rout)
+    dictDf = pd.read_csv(rout, sep = ";")
     dictDf = dictDf.fillna("")
     words = dictDf['word'].tolist()
     transcript = dictDf['transcript'].tolist()
