@@ -12,6 +12,25 @@ from random import randint
 from random import shuffle
 from googletrans import Translator
 
+class Game():
+    def __init__(self, dictPath, countOfRounds):
+        self.dictPath = dictPath
+        self.countOfRounds = countOfRounds
+        self.badAnswers = ['Lol, no', 'Try better', 'U made me cry, loser', 'Nope']
+        self.yesAnswers = ['Good!', 'Hell, yeah!', '^=^ you are the best!', 'Yep']
+
+    def updateDict(self):
+        dictDf = pd.read_csv(dictPath, sep=";")
+        dictDf = dictDf.fillna("")
+        self.words = dictDf['word'].tolist()
+        self.transcript = dictDf['transcript'].tolist()
+        self.translate = dictDf['translate'].tolist()
+
+    def play(self):
+
+
+
+
 def updateDict(rout):
     dictDf = pd.read_csv(rout, sep = ";")
     dictDf = dictDf.fillna("")
@@ -24,7 +43,7 @@ def training(words, transcript, translate):
     print("How many rounds do you want? (type integer digit)")
     count = int(input()) # count of rounds
     #rate = 0
-    pastmyIndexes = []
+    pastmyIndexes = [] # что это такое блят
     badAnswers = ['Lol, no', 'Try better', 'U made me cry, loser', 'Nope']
     yesAnswers = ['Good!', 'Hell, yeah!', '^=^ you are the best!', 'Yep']
     score = 0
