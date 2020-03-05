@@ -5,7 +5,7 @@ class FavouriteDict():
     def __init__(self, favDictPath, mainDictPath):
         self.favDictPath = favDictPath
         self.mainDictPath = mainDictPath
-# TODO разберись с кодировками!!!
+# TODO разберись с кодировками!!
     def loadNewWords(self):
         favPd = pd.read_csv(self.favDictPath, sep=';', header=None)
         mainPd = pd.read_csv(self.mainDictPath, sep=';')
