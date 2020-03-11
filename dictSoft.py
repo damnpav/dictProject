@@ -14,6 +14,22 @@ import re
 
 dictPath = "dict.csv"  # route to words
 
+# TODO отдебажились нормально. надо пробегаться по папке с целевым файлом, искать ключевое слово
+# далее сравнивать дату изменения с изменением главного словаря, и обновлять словарь
+# используй stat = os.stat(path) и stat.st_mtime
+# i need to move data from one csv to another
+class FavouriteDict():
+    def __init__(self, favDictPath, mainDictPath):
+        self.favDictPath = favDictPath
+        self.mainDictPath = mainDictPath
+    def loadNewWords(self):
+        favPd = pd.read_csv(self.favDictPath, sep=';', header=None)
+        mainPd = pd.read_csv(self.mainDictPath, sep=';')
+        newDf = pd.DataFrame(list(zip(list(favPd[2]), [''] * favPd.shape[0], list(favPd[3]))),\
+                             columns=['word', 'transcript', 'translate'])
+        mainPd = mainPd.append(newDf, ignore_index=True)
+        mainPd.to_csv(self.mainDictPath, index=False)
+
 class Game():
     def __init__(self, dictPath):
         self.dictPath = dictPath
@@ -78,7 +94,8 @@ def main():
     myGame.updateDict()  # update dictionary with words
     for i in range(int(userInput)):
         myGame.play()
-    return "Your score is: " + str(myGame.score)
+    print ("Your score is: " + str(myGame.score))
+    return 0
 
-print(main())
+main()
 
